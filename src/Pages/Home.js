@@ -1,40 +1,37 @@
 import { useState} from "react";
-
+import MovieList from "./MovieList";
 const Home = () => {
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error,setError]=useState(null)
 
   const fetchApiData = async () => {
     setIsLoading(true);
+    setError(null);
     try {
-      const response = await fetch("https://swapi.dev/api/films/");
+      const response = await fetch("https://swapi.dev/api/film/");
+      if(!response.ok){
+      throw new Error('Something went wrong...Retry') 
+    }
       const data = await response.json();
-
       setMovie(data.results);
     } catch (error) {
-      console.log(error);
+       setError(error.message);
     } finally {
       setIsLoading(false);
     }
+    
   };
 
   return (
     <>
       <button onClick={fetchApiData}>fetch Movies</button>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Loading...</p> && <h4> till the time found no Movies</h4>
       ) : (
-        <ul>
-          {movie.map((movieData, index) => (
-            <li key={index}>
-              <h2>{movieData.title}</h2>
-              <p>Episode {movieData.episode_id}</p>
-              <p>{movieData.opening_crawl}</p>
-              <p>Release Date: {movieData.release_date}</p>
-            </li>
-          ))}
-        </ul>
+        < MovieList movie={movie}/>
       )}
+      {!isLoading && <p>{error} </p> }
     </>
   );
 };
