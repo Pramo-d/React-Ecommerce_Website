@@ -1,37 +1,40 @@
-import { useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 import MovieList from "./MovieList";
 const Home = () => {
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error,setError]=useState(null)
+  const [error, setError] = useState(null);
 
-  const fetchApiData = async () => {
+  const fetchApiData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch("https://swapi.dev/api/film/");
-      if(!response.ok){
-      throw new Error('Something went wrong...Retry') 
-    }
+      const response = await fetch("https://swapi.dev/api/films/");
+      if (!response.ok) {
+        throw new Error("Something went wrong...Retry");
+      }
       const data = await response.json();
       setMovie(data.results);
     } catch (error) {
-       setError(error.message);
-    } finally {
-      setIsLoading(false);
+      setError(error.message);
     }
-    
-  };
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchApiData();
+  }, [fetchApiData]);
 
   return (
     <>
       <button onClick={fetchApiData}>fetch Movies</button>
       {isLoading ? (
-        <p>Loading...</p> && <h4> till the time found no Movies</h4>
+        <p>Loading...</p>
       ) : (
-        < MovieList movie={movie}/>
+       movie.length >0 && <MovieList movie={movie} />
       )}
-      {!isLoading && <p>{error} </p> }
+      {!isLoading && movie.length===0 &&<p>till the time found No Movies</p>}
+      {!isLoading && <p>{error} </p>}
     </>
   );
 };
