@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import MovieList from "./MovieList";
+import MovieList from "../Movies/MovieList";
+import AddMovie from "../Movies/AddMovie";
+
 const Home = () => {
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,16 +27,30 @@ const Home = () => {
     fetchApiData();
   }, [fetchApiData]);
 
+  const addMoviehandler=(movie)=>{
+    console.log(movie);
+  }
+
   return (
     <>
-      <button onClick={fetchApiData}>fetch Movies</button>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-       movie.length >0 && <MovieList movie={movie} />
-      )}
-      {!isLoading && movie.length===0 &&<p>till the time found No Movies</p>}
-      {!isLoading && <p>{error} </p>}
+      <section>
+        <AddMovie  onAddMovie={addMoviehandler}/>
+      </section>
+
+      <section>
+        <button onClick={fetchApiData}>fetch Movies</button>
+      </section>
+      <section>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          movie.length > 0 && <MovieList movie={movie} />
+        )}
+        {!isLoading && movie.length === 0 && (
+          <p>till the time found No Movies</p>
+        )}
+        {!isLoading && <p>{error} </p>}
+      </section>
     </>
   );
 };
