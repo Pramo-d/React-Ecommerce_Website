@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../Style/Header.css";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
+import AuthContext from "../store/auth-context";
+ 
 const Header = () => {
+ 
+  const authCtx=useContext(AuthContext);
+  const isLoggedin=authCtx.isLoggedIn;
+   
+
+  const logoutHandler=()=>{
+       authCtx.logout();
+  }
   return (
     <header>
     <nav>
       <ul>
-        <li>
+       {isLoggedin && <li>
           <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/store">store</NavLink>
-        </li>
-        <li>
+        </li>}
+        {isLoggedin && <li>
+          <NavLink to="/store"> store</NavLink>
+        </li>}
+       {isLoggedin && <li>
           <NavLink to="/about">About</NavLink>
-        </li>
-        <li>
+        </li>}
+      {isLoggedin && <li>
           <NavLink to='/contact'>Contact Us</NavLink>
-        </li>
+        </li>}
+       {!isLoggedin && <li>
+          <NavLink to='/login'>Login</NavLink>
+        </li>}
+        {isLoggedin && <li>
+            <button onClick={logoutHandler}>Logout</button>
+          </li>}
       </ul>
     </nav>
     </header>

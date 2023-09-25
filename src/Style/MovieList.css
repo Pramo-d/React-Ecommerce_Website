@@ -1,0 +1,19 @@
+.items{
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+   .list-item{
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+ 
+  }
+ .items button{
+    color:rgb(166, 80, 80)
+  }
+  

@@ -1,10 +1,11 @@
 import React from "react";
+import '../Style/MovieList.css';
 
 const MovieList = (props) => {
   return (
-    <ul>
+    <ul className="items">
       {props.movie.map((movie) => (
-        <li key={movie.id}>
+        <li key={movie.id} className="list-item">
           <h2>{movie.title}</h2>
           <p>{movie.openingText}</p>
           <p>{movie.releaseDate}</p>

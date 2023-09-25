@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import MovieList from "../Movies/MovieList";
 import AddMovie from "../Movies/AddMovie";
+import "../Style/Home.css";
 
 const Home = () => {
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // here the if movie fetching from database the it show loading...
-  const [error, setError] = useState(null);             // here we make a cutomize error to display if fetch api have some issue
+  const [error, setError] = useState(null); // here we make a cutomize error to display if fetch api have some issue
 
   //we use CallBack function to Get the data from database through fetch api
   const fetchApiData = useCallback(async () => {
@@ -84,7 +85,7 @@ const Home = () => {
       <section>
         <button onClick={fetchApiData}>fetch Movies</button>
       </section>
-      <div>
+      <section>
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -96,7 +97,7 @@ const Home = () => {
           <p>till the time found No Movies</p>
         )}
         {!isLoading && <p>{error} </p>}
-      </div>
+      </section>
     </>
   );
 };

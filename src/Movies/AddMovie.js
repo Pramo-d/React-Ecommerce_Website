@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../Style/AddMovie.css'
 
 const AddMovie = (props) => {
   const [title, setTitle] = useState("");

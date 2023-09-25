@@ -3,6 +3,7 @@ import "../App.css";
 import Navbar from "../Component/Navbar";
 import Product from "../Component/Product";
 import Cart from "../Component/Cart";
+ 
 
 const Store = () => {
   const [show, setShow] = useState(true);
@@ -30,7 +31,7 @@ const Store = () => {
   };
   return (
     <React.Fragment>
-      <Navbar size={cart.length} setShow={setShow} />
+      <Navbar size={cart.length} setShow={setShow}/> 
       {show ? (
         <Product handleClick={handleClick} />
       ) : (

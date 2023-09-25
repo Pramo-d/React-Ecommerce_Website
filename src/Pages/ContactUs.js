@@ -23,7 +23,9 @@ const ContactUs = (props) => {
 
   return (
     <>
-    < div>Contact Us  Please fill the form</div>
+     < p> Please fill the form for Contact</p> 
+   
+    
       <form onSubmit={submitHandler}>
         <div>
           <label htmlFor="name">Name</label>
@@ -39,6 +41,7 @@ const ContactUs = (props) => {
         </div>
         <button>Submit</button>
       </form>
+     
     </>
   );
 };
