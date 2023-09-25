@@ -29,7 +29,7 @@ const Header = () => {
           <NavLink to='/contact'>Contact Us</NavLink>
         </li>}
        {!isLoggedin && <li>
-          <NavLink to='/login'>Login</NavLink>
+          <NavLink to='/login'>Login Page</NavLink>
         </li>}
         {isLoggedin && <li>
             <button onClick={logoutHandler}>Logout</button>
