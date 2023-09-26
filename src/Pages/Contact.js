@@ -22,7 +22,7 @@ const  Contact = () => {
 
   return (
     <div>
-     <ContactUs onDetailMovie={detailHaandler}/>
+     <ContactUs onDetailContact={detailHaandler}/>
     </div>
   );
  

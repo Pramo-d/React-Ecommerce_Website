@@ -14,7 +14,7 @@ const ContactUs = (props) => {
       number:number
     };
 
-  props.onDetailMovie(detail)
+  props.onDetailContact(detail)
 
     setName('');
     setEmail('');
@@ -23,10 +23,9 @@ const ContactUs = (props) => {
 
   return (
     <>
-     < p> Please fill the form for Contact</p> 
-   
-    
+     
       <form onSubmit={submitHandler}>
+      < p> Please fill the form for Contact</p> 
         <div>
           <label htmlFor="name">Name</label>
           <input type="text" id="name" value={name} onChange={(e)=> setName(e.target.value)} />
@@ -39,7 +38,7 @@ const ContactUs = (props) => {
           <label htmlFor="number">Phone Number</label>
           <input type="text" id="number" value={number} onChange={(e)=> setNumber(e.target.value)}/>
         </div>
-        <button>Submit</button>
+        <button onClick={()=>alert('Your Information Recieved Successfully')} color='green'>Submit</button>
       </form>
      
     </>

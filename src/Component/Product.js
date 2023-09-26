@@ -6,7 +6,7 @@ const Product = ({handleClick}) => {
 
     const productsArr = [
         {
-          id:'Colors',
+          id:'Color',
           title: "Colors",
     
           price: 100,
